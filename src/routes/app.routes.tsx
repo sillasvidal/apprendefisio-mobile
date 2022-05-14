@@ -9,10 +9,13 @@ import Header from '../components/Header';
 import CustomDrawer from '../components/CustomDrawer';
 
 import Icon from 'react-native-vector-icons/Feather';
+import Contents from '../pages/Contents';
+import {createStackNavigator} from '@react-navigation/stack';
 
 const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
 
-const AppRoutes = () => {
+const Root = () => {
   return (
     <Drawer.Navigator
       initialRouteName="Home"
@@ -45,6 +48,19 @@ const AppRoutes = () => {
         component={Categories}
       />
     </Drawer.Navigator>
+  );
+};
+
+const AppRoutes = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Root"
+        component={Root}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen name="Content" component={Contents} />
+    </Stack.Navigator>
   );
 };
 
