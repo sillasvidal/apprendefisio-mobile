@@ -1,6 +1,6 @@
 import {useRoute} from '@react-navigation/native';
 import React from 'react';
-import {Image, Text} from 'react-native';
+import {Image, useWindowDimensions, View} from 'react-native';
 
 import {Container} from './styles';
 
@@ -10,18 +10,32 @@ interface RouteParams {
 
 const Contents: React.FC = () => {
   const route = useRoute();
+  const dimensions = useWindowDimensions();
+
+  console.log(dimensions);
 
   const routeParams = route.params as RouteParams;
 
+  const imageData = [
+    {
+      image: routeParams.pathContent,
+    },
+  ];
+
   return (
     <Container>
-      <Text>{routeParams.pathContent}</Text>
-      <Image
-        style={{
-          resizeMode: 'contain',
-        }}
-        source={require('../../resources/Anatomia1.jpeg')}
-      />
+      {imageData.map((images, i) => (
+        <View key={i}>
+          <Image
+            style={{
+              height: dimensions.height,
+              width: dimensions.width,
+            }}
+            resizeMode="contain"
+            source={images.image}
+          />
+        </View>
+      ))}
     </Container>
   );
 };

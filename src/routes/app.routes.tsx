@@ -59,7 +59,7 @@ const AppRoutes = () => {
         component={Root}
         options={{headerShown: false}}
       />
-      <Stack.Screen name="Content" component={Contents} />
+      <Stack.Screen name="Conteúdo" component={Contents} />
     </Stack.Navigator>
   );
 };
